@@ -23,36 +23,23 @@
  * 6.若您的项目无法满足以上几点，可申请商业授权
  */
 
-package cn.herodotus.dante.module.strategy.support;
+package cn.herodotus.dante.message;
 
-
-import cn.herodotus.dante.module.strategy.constants.StrategyModuleConstants;
-import cn.herodotus.engine.assistant.core.context.PropertyFinder;
-import cn.herodotus.engine.assistant.core.context.PropertyResolver;
-import org.springframework.core.env.Environment;
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
 
 /**
- * <p>Description: 策略模块配置获取器 </p>
+ * <p>Description: 平台消息服务 </p>
  *
  * @author : gengwei.zheng
- * @date : 2022/2/1 19:23
+ * @date : 2023/1/17 18:10
  */
-public class StrategyPropertyFinder extends PropertyFinder {
+@EnableDiscoveryClient
+@SpringBootApplication
+public class MessageApplication {
 
-    public static String getDataAccessStrategy(Environment environment, String defaultValue) {
-        return PropertyResolver.getProperty(environment, StrategyModuleConstants.ITEM_PLATFORM_DATA_ACCESS_STRATEGY, defaultValue);
+    public static void main(String[] args) {
+        SpringApplication.run(MessageApplication.class, args);
     }
-
-    public static String getDataAccessStrategy(Environment environment) {
-        return PropertyResolver.getProperty(environment, StrategyModuleConstants.ITEM_PLATFORM_DATA_ACCESS_STRATEGY);
-    }
-
-    public static String getArchitecture(Environment environment, String defaultValue) {
-        return PropertyResolver.getProperty(environment, StrategyModuleConstants.ITEM_PLATFORM_ARCHITECTURE, defaultValue);
-    }
-
-    public static String getArchitecture(Environment environment) {
-        return PropertyResolver.getProperty(environment, StrategyModuleConstants.ITEM_PLATFORM_ARCHITECTURE);
-    }
-
 }
